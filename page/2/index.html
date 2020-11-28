@@ -160,6 +160,98 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://jeremy0519.coding.net/2020/05/01/02-%E9%85%8D%E7%BD%AEssh%E5%AF%86%E9%92%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jeremy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="唐志鹏的小站">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/01/02-%E9%85%8D%E7%BD%AEssh%E5%AF%86%E9%92%A5/" class="post-title-link" itemprop="url">04-配置ssh密钥</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-01 15:22:36" itemprop="dateCreated datePublished" datetime="2020-05-01T15:22:36+08:00">2020-05-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-03 22:15:46" itemprop="dateModified" datetime="2020-05-03T22:15:46+08:00">2020-05-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%8D%E8%B4%B9%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">免费搭建个人博客</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="本文是windows的教程，Mac-OS请自力更生，或自行上网搜索"><a href="#本文是windows的教程，Mac-OS请自力更生，或自行上网搜索" class="headerlink" title="本文是windows的教程，Mac OS请自力更生，或自行上网搜索"></a>本文是windows的教程，Mac OS请自力更生，或自行上网搜索</h4><p>创建一个文件夹，用作博客根目录，我这里在D盘建立一个blog文件夹. 选中文件夹右键，点击Git Bash Here，进入这个界面.<br><img src="/2020/05/01/02-%E9%85%8D%E7%BD%AEssh%E5%AF%86%E9%92%A5/git-bash.jpg" alt="git-bash"></p>
+<h5 id="npm加速"><a href="#npm加速" class="headerlink" title="npm加速"></a>npm加速</h5><p>输入（粘贴为鼠标右键（可能git不同版本粘贴方法不一样，如果右键不行请自行百度））</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https:&#x2F;&#x2F;registry.npm.taobao.org &#x2F;&#x2F;设置国内镜像源 （不推荐，如果用这种方法，请将后文用到的所有cnpm均改为npm）</span><br><span class="line">或：</span><br><span class="line">npm install -g cnpm &#x2F;&#x2F;安装cnpm（推荐这种）</span><br></pre></td></tr></table></figure>
+
+<h5 id="git设置"><a href="#git设置" class="headerlink" title="git设置"></a>git设置</h5><p>输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config –-global user.name &quot;username&quot;</span><br></pre></td></tr></table></figure>
+<p>（username是刚才Github用户名）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config –-global user.email &quot;email&quot;</span><br></pre></td></tr></table></figure>
+<p>（email是Github邮箱）<br>这时它不会有任何反应.<br><img src="/2020/05/01/02-%E9%85%8D%E7%BD%AEssh%E5%AF%86%E9%92%A5/git-config.jpg" alt="git-config"></p>
+<h5 id="检查目录"><a href="#检查目录" class="headerlink" title="检查目录"></a>检查目录</h5><p>输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~&#x2F;.ssh</span><br></pre></td></tr></table></figure>
+<p>若显示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash: cd: &#x2F;c&#x2F;Users&#x2F;电脑用户名&#x2F;.ssh: No such file or directory</span><br></pre></td></tr></table></figure>
+<p>如图.<br>![directry-check][02-配置ssh密钥/directory-check.jpg]<br>可直接进入下一步（一般来说是这种情况）.<br>若没有报错，如图.<br><img src="https://s1.ax1x.com/2020/05/03/Yp80tU.jpg" alt="directory-check"><br>需要进入C:\Users\电脑用户名，将.ssh文件夹删除，再进入下一步.</p>
+<h5 id="生成ssh密钥"><a href="#生成ssh密钥" class="headerlink" title="生成ssh密钥"></a>生成ssh密钥</h5><p>输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;email&quot;</span><br></pre></td></tr></table></figure>
+<p>（email是Github邮箱）<br>在显示冒号（:）的时候敲回车，总共3次，结束后如图.<br>![generate-ssh][02-配置ssh密钥/generate-ssh.jpg]</p>
+<h5 id="上传ssh密钥"><a href="#上传ssh密钥" class="headerlink" title="上传ssh密钥"></a>上传ssh密钥</h5><p>进入C:\Users\电脑用户名.ssh，找到里面的id_rsa.pub，右键打开方式——记事本，如图.<br>![copy-ssh][02-配置ssh密钥/copy-ssh.jpg]<br>全选复制下来.</p>
+<p>进入<a target="_blank" rel="noopener" href="https://github.com/settings/ssh/new">Github设置ssh页</a>.<br>Title随便输，Key里面粘贴刚刚复制的，点击Add SSH Key.</p>
+<h5 id="连接ssh"><a href="#连接ssh" class="headerlink" title="连接ssh"></a>连接ssh</h5>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://jeremy0519.coding.net/2020/05/01/01-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -640,7 +732,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
